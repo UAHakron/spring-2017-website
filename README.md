@@ -1,5 +1,4 @@
 #HAkron Hackathon Landing Page
-hi
 
 
 ## [Using Start Bootstrap as a template](http://startbootstrap.com/) - [Creative](http://startbootstrap.com/template-overviews/creative/)
