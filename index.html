@@ -3,28 +3,65 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
     <title>HAkron</title>
 
+    <!-- don't load from cache I hope -->
+    <meta http-equiv="expires" content="0">
+    
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/png">
+    
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
+    <!-- Schedule stuff -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=700px, initial-scale=1, maximum-scale=1">
+
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+
+
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="css/creative.min.css" rel="stylesheet">
+    <link href="css/creative.css" rel="stylesheet">
 
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $("#email-form").submit(function(e) {
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+                var url = "api/emails";
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+
+                    data: $("#email-address").serialize(), // serializes the form's elements.
+                    success: function(data) {
+                        alert(data); // handle responses, probably display success message.
+                        console.log("Ajax Working...");
+                    }
+                });
+                $('#url').val("");
+
+
+            });
+        })
+
+    </script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,8 +72,7 @@
 </head>
 
 <body id="page-top">
-
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="box-shadow: 0px 2px 20px #707070">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -46,60 +82,73 @@
                 <a class="navbar-brand page-scroll" href="#page-top">Hakron</a>
             </div>
 
+            <a id="mlh-trust-badge" style="display:block;max-width:100px;min-width:60px;position:fixed;right:27px;top:51px;width:10%;z-index:10;" href="https://mlh.io/seasons/na-2017/events?utm_source=na-2017&amp;utm_medium=TrustBadge&amp;utm_campaign=na-2017&amp;utm_content=white" target="_blank"><img src="img/logos/mlhTrsutBadge.svg" alt="Major League Hacking 2017 Hackathon Season" style="width:100%;-webkit-filter: drop-shadow(2px 2px 3px #606060); ">
+
+            </a>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!--
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a  href="/Register.html">Register</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a href="http://my.mlh.io/oauth/authorize?client_id=551317ed9f6274f7a4043197bd60746a8aa5bab6ab4be2545ec7bd04fcd8961d&redirect_uri=https%3A%2F%2Fhakron.io%2Fcallback.html&response_type=token">Register</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Features</a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="#schedule">Schedule</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="#portfolio">FAQ</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Sponsors</a>
+                        <a class="page-scroll" href="#sponsors">Sponsors</a>
                     </li>
                 </ul>
+                -->
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
     </nav>
-<!--Information at a glance here + registration-->
+    <!--Information at a glance here + registration-->
     <header>
-        <div class="header-content">
+        <div class="header-content" style="margin-top:40px">
             <div class="header-content-inner">
-                <h1 id="homeHeading">HAkron</h1>
-                <hr>
-                <p>April 8-9, 2017</p>
-                <a href="/Register.html" class="btn btn-primary btn-xl page-scroll">Register</a>    
+                <div class="picturebackground">
+                    <img src="img/hakron_clean.svg" style="max-height:170px;margin-top:40px">
+                </div>
+                <p style="margin-top:-0.5em; font-size:22px">April 22-23, 2017</p>
             </div>
-        </div>
-    </header>
-<!-- More in depth info here-->
-    <section class="bg-primary" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">More in depth information here!</h2>
-                    <hr class="light">
-                    <p class="text-faded">About page here! </p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+
+            <div class="form-group">
+                <!-- Button -->
+                <div class="col-sm-12 controls">
+                    <h3 style="font-size:40px">THANKS FOR COMING!!</h3>
+                    <h3>Check out the <a style="color:#00285e; text-decoration:underline" href="https://hakron2017.devpost.com" target="_blank">Devpost</a> to see the submissions and winners </h3>
                 </div>
             </div>
+            <!-- More in depth info here-->
+            <section class="bg-primary" id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2 text-center">
+                            <hr class="light">
+                            <div class="text-faded" style="font-weight:600; font-size:20px"> The University of Akron's first 24-Hour Hackathon, built and organized entirely by students</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
-<!--Our focuses / unique part of our hackathon-->
+    </header>
+
+
+    <!--Our focuses / unique part of our hackathon-->
     <section id="services">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Features</h2>
+                    <h2 class="section-heading">Features of HAkron 2017</h2>
                     <hr class="primary">
                 </div>
             </div>
@@ -108,38 +157,266 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+                        <i class="fa fa-4x fa-group text-primary sr-icons"></i>
                         <h3>Mentorship</h3>
                         <p class="text-muted">1:4 Mentor:Hacker ratio</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+                        <i class="fa fa-4x fa-trophy text-primary sr-icons"></i>
                         <h3>Prizes</h3>
-                        <p class="text-muted">2K top prize!</p>
+                        <p class="text-muted">Cash top prize! Along with prizes from Tiny Circuits, and more!</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+                        <i class="fa fa-4x fa-building text-primary sr-icons"></i>
                         <h3>Venue</h3>
-                        <p class="text-muted">Hack in The Bit Factory - A new startup incubator</p>
+                        <p class="text-muted">The Bit Factory - A new startup incubator in the heart of downtown Akron</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
-                        <h3>Tech</h3>
-                        <p class="text-muted">Hack on Tiny Circuits, Oculus, and HoloLens!</p>
+                        <i class="fa fa-4x fa-ticket text-primary sr-icons"></i>
+                        <h3>Giveaways</h3>
+                        <p class="text-muted">We're raffling off an iPad Pro just for showing up!</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-<!--FAQ Stuff here -->
-    <section class="no-padding" >
-       <div class="container" id="portfolio">
+
+    <h2 class="section-heading" style="text-align: center">Parking & Bit Factory Map</h2>
+    <hr>
+    <!--Map of Parking and stuff-->
+    <section id="map">
+        <iframe src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhG7EBdnEGLVmZBg9XFQN70ZMHvFxst4Q&callback=initMap"></iframe>
+    </section>
+
+
+    <!--Schedule of Events -->
+    <section id="schedule" class="section-heading">
+        <h2 class="section-heading" style="text-align: center">Schedule of Events</h2>
+        <hr class="primary">
+        <div style="text-align:center; margin:auto">
+            <button id="ScheduleButton" type="button" style="width:175px; height:40px; font-size:16px" class="btn btn-primary" onClick="flipButtonText()">Expand Schedule</button>
+        </div>
+        <section id="surrounding" style="margin:auto; padding:0px" class="collapse">
+            <h1 class="schedule-header">Saturday, April 22</h1>
+            <section id="cd-timeline" class="cd-container">
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img cd-picture">
+                        <img src="img/clocks/1030.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>10:30 am<span id="schedule-description">Door opens! Eat breakfast, play games!  </span></h4>
+                    </div>
+                </div>
+
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/1100.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>11:00 am<span id="schedule-description">Hackathon Museum</span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/1200.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>12:00 pm<span id="schedule-description">Keynote Speaker + Opening Ceremonies</span></h4>
+                    </div>
+                </div>
+
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0100.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>01:00 pm<span id="schedule-description">Hacking begins! </span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0100.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>01:00 pm<span id="schedule-description">Lunch - Old Carolina Barbeque</span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0130.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>01:30 pm<span id="schedule-description">Biomimicry Talk - Stephanie Pierce</span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0300.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>03:00 pm<span id="schedule-description">Android Development Workshop - Thomas Eynon</span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0400.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>04:00 pm<span id="schedule-description">"How to Build a Website" - Kyle Trussler</span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0500.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>05:00 pm<span id="schedule-description">NodeJS Basics - Dylan McIntyre</span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0600.png">
+                    </div>
+
+                    <div class="cd-timeline-content">
+                        <h4>06:00 pm<span id="schedule-description">Dinner - Spaghetti Warehouse </span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0700.png">
+                    </div>
+
+                    <div class="cd-timeline-content">
+                        <h4>07:00 pm<span id="schedule-description">Smash Bros. Melee Tournament</span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0800.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>08:00 pm<span id="schedule-description" >"How to Get an Internship at The Big 4" - Noah Wagner</span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0900.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>09:00 pm<span id="schedule-description">MLH Cup Stacking</span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/1000.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>10:00 pm<span id="schedule-description">Ping-Pong Tournament!</span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0900.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>11:30 pm<span id="schedule-description">Vim Tutorial - Emerson Cloud</span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/1200.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>12:00 am<span id="schedule-description">Midnight snack & iPad Pro raffle winners! </span></h4>
+                    </div>
+                </div>
+
+            </section>
+             <h1 class="schedule-header">Sunday, April 23</h1>
+            <section id="cd-timeline" class="cd-container">
+
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0800.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>08:00 am<span id="schedule-description">Breakfast - Breakfast Burrito Bar </span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/1200.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>12:00 pm<span id="schedule-description">Lunch - Jimmy John's </span></h4>
+                    </div>
+                </div>
+                
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0100.png">
+                    </div>
+                    <div class="cd-timeline-content">
+                        <h4>01:00 pm<span id="schedule-description">Hacking ENDS! Register & Submit your projects to <a style="color:#00285e; font-weight:bold; text-decoration:underline" href="https://hakron2017.devpost.com/" target="_blank">Devpost</a> </span></h4>
+                    </div>
+                </div>
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0130.png">
+                    </div>
+
+                    <div class="cd-timeline-content">
+                        <h4>01:30 pm<span id="schedule-description">Judging begins</span></h4>
+                    </div>
+                </div>
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0330.png">
+                    </div>
+
+                    <div class="cd-timeline-content">
+                        <h4>03:30 pm<span id="schedule-description">Judging ends! </span></h4>
+                    </div>
+                </div>
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img">
+                        <img src="img/clocks/0330.png">
+                    </div>
+
+                    <div class="cd-timeline-content">
+                        <h4>03:30 pm<span id="schedule-description">Closing Ceremonies</span></h4>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+
+
+    <!--FAQ Stuff here -->
+    <section class="no-padding" style="margin-top:-40px">
+        <div class="container" id="portfolio">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">FAQ</h2>
@@ -147,56 +424,57 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row no-gutter popup-gallery">
+        <div class="container-fluid" style="background-color: #00285e">
+            <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/egg1.png" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
+                    <a class="portfolio-box">
+                        <img src="img/faq/q1.png" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    What is a hackathon?
+                                    What is a Hackathon?
                                 </div>
                                 <div class="project-name">
-                                    A real time science fair!
+                                    A real time science fair! Program and build a project with a group of people to compete for prizes and industry recognition.
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/egg2.png" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
+                    <a class="portfolio-box">
+                        <img src="img/faq/q2.png" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    How do I get there?
+                                    Where the HACK is The Bit Factory?
                                 </div>
                                 <div class="project-name">
                                     Suite 511, 526 S Main St, Akron, OH 44311
                                 </div>
+
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/egg3.png" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
+                    <a class="portfolio-box">
+                        <img src="img/faq/q3.png" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    What should I bring
+                                    What should I bring?
                                 </div>
                                 <div class="project-name">
-                                    Photo ID, clothes, toiletries, hacker setup, and maybe an idea?
+                                    Student ID, clothes, toiletries, hacker setup, an idea, and anything else you need to function independently for 24 hours.
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/egg4.png" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
+                    <a class="portfolio-box">
+                        <img src="img/faq/q4.png" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
@@ -210,30 +488,30 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/egg5.png" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
+                    <a class="portfolio-box">
+                        <img src="img/faq/q5.png" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
                                     How much does it cost?
                                 </div>
                                 <div class="project-name">
-                                    It's absolutely FREE!
+                                    Nothing! Zip! Nada! Attending is absolutely FREE!
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/egg6.png" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
+                    <a class="portfolio-box">
+                        <img src="img/faq/q6.png" class="img-responsive" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Do I need a team to join?
+                                    Do I need to come with a team?
                                 </div>
                                 <div class="project-name">
-                                    No! if you do not have a team we will help you find one. (Max of 4 people per team)
+                                    Nope! If you do not have a team we will help you find one. (Max of 4 people per team)
                                 </div>
                             </div>
                         </div>
@@ -242,30 +520,104 @@
             </div>
         </div>
     </section>
-<!--Add in all sponsorship information here-->
-    <section >
+
+
+    <!--Add in all sponsorship information here-->
+    <section id="sponsors" style="margin-bottom">
         <div class="container text-center">
             <div class="call-to-action">
-                <h2>SPONSORSHIP INFORMATION HERE</h2>
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Partners</h2>
+                    <hr class="primary">
+                </div>
             </div>
+            <a href="http://www.thebitfactory.com/" target="_blank">
+                <img src="img/logos/TheBitFactory%20(Dark%20Text).png" style="height:17em; margin:25px">
+            </a>
+
+            <div class="call-to-action" style="padding-top:40px">
+                <div class="col-lg-12 text-center" style="padding-top: 40px">
+                    <h2 class="section-heading">Sponsors</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+            <a href="http://www.tremcoinc.com/" target="_blank">
+                <img src="img/logos/tremco-logo.jpg" style="height:8em; margin:5px">
+            </a>
+            <a href="http://www.bdmorganfdn.org/" target="_blank">
+                <img src="img/logos/BDMF_LOGO_CMYK.jpg" style="height:15em; margin:55px">
+            </a>
+            <a href="http://www.thompsonhine.com/" target="_blank">
+                <img src="img/logos/TH_Logo_cmyk_rev.svg" style="height:13em; margin:15px">
+            </a>
+            <a href="http://fenetech.com/" target="_blank">
+                <img src="img/logos/fenetech-logo.png" style="height:7.5em; margin:15px">
+            </a>
+
+            <a href="https://www.mrisoftware.com" target="_blank">
+                <img src="img/logos/MRI_Software.png" style="height:10em; margin:25px">
+            </a>
+            <a href="https://www.smuckers.com" target="_blank">
+                <img src="img/logos/Smuckers_logo.jpg" style="height:11em; margin:25px">
+            </a>
+            <a href="http://www.embeddedplanet.com/" target="_blank">
+                <img src="img/logos/embedded_planet_logo.jpg" style="height:7em; margin:3px">
+            </a>
+            <a href="https://www.github.com" target="_blank">
+                <img src="img/logos/github-logo.svg" style="height:6em; margin:35px">
+            </a>
+            <a href="http://www.brouse.com/" target="_blank">
+                <img src="img/logos/brouse_logo.png" style="height:6em; margin:35px">
+            </a>
+            <a href="https://www.onbase.com/en/" target="_blank">
+                <img src="img/logos/Hyland-Software-Logo-Final.png" style="height:6em; margin:15px">
+            </a>
+
+            <!--
+            <a href="https://www.uakron.edu/exl/" target="_blank">
+                <img src="img/logos/EXLCenter_Logo.png" style="height:7em; margin:15px">
+            </a>
+            -->
+
+            <a href="http://www.thefundneo.org/" target="_blank">
+                <img src="img/logos/FFOEF_logo.jpg" style="height:9em; margin:25px">
+            </a>
+            <a href="https://github.com/stohio/software-lab" target="_blank">
+                <img src="img/logos/softwarelab_logo.jpg" style="height:6em; margin:35px">
+            </a>
+            <a href="https://www.jumpstartinc.org/#1" target="_blank">
+                <img src="img/logos/JumpStart_Logo.png" style="height:9em; margin:25px">
+            </a>
+            <a href="https://tinycircuits.com/" target="_blank">
+                <img src="img/logos/TinyCircuits_Logo.png" style="height:9em; margin:15px">
+            </a>
+
+
+            <div class="row" style="padding-top:30px; font-size:16px">Are you one of these sponsors and plan on being at the event? <a href="https://hakron.io/sponsors.html">Click here</a> to learn more.</div>
         </div>
     </section>
-<!--Direct Contact information-->
-    <section id="contact" class="bg-dark">
+
+
+    <!--Direct Contact information-->
+    <section id="contact" class="bg-dark" style="padding-bottom:20px">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Contact Us</h2>
+                    <h2 class="section-heading-">Contact Us</h2>
                     <hr class="primary">
-                    <p>Have specific questions? Want to sponsor or volunteer? Email us! We are very responsive! </p>
-                </div>
-                <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <i class="fa fa-phone fa-3x sr-contact"></i>
-                    <p>330-931-8770</p>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-                    <p><a href="mailto:team@hakron.io">team@hakron.io</a></p>
+                    <a href="https://www.facebook.com/HAkron-1029287843865004/" target="_blank">
+                    <a href="https://twitter.com/uahakron?lang=en" target="_blank">
+                        <img src="img/social/twitterWhiteJustBird.png" href="" style="height:4em; padding-left:10px">
+                    </a>
+                        <img src="img/social/FB-f-Logo__white_50.png" href="" style="height:3.3em; padding-right:5px">
+                    </a>
+                    <img src="img/social/snapchatWhite.png" style="height:3.4em">
+                    <p style="padding-top:70px">Have specific questions? Want to sponsor or volunteer? Email us! </p>
+                    <i class="fa fa-envelope-o fa-3x"></i>
+                    <p style="margin-top:-3.3em"><a href="mailto:uahakron@gmail.com">uahakron@gmail.com</a></p>
+                    <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">
+                        <img src="img/logos/mlh-logo-white.svg" style="height:160px; padding-top:30px; margin:auto">
+                    </a>
                 </div>
             </div>
         </div>
@@ -282,8 +634,17 @@
     <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
     <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
+    <!-- Resource jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
     <!-- Theme JavaScript -->
-    <script src="js/creative.min.js"></script>
+    <script src="js/creative.js"></script>
+
+    <!-- Google maps thing -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhG7EBdnEGLVmZBg9XFQN70ZMHvFxst4Q&callback=initMap">
+
+
+    </script>
 
 </body>
 

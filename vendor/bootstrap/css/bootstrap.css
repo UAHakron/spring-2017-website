@@ -2933,10 +2933,10 @@ select[multiple].input-lg {
   .form-inline .input-group .input-group-addon,
   .form-inline .input-group .input-group-btn,
   .form-inline .input-group .form-control {
-    width: auto;
+    width: 50%;
   }
   .form-inline .input-group > .form-control {
-    width: 100%;
+    width: 50%;
   }
   .form-inline .control-label {
     margin-bottom: 0;
@@ -2961,6 +2961,10 @@ select[multiple].input-lg {
   .form-inline .has-feedback .form-control-feedback {
     top: 0;
   }
+}
+.form-horizontal {
+    width: 600px;
+    margin: auto;
 }
 .form-horizontal .radio,
 .form-horizontal .checkbox,
@@ -3675,7 +3679,7 @@ tbody.collapse.in {
 .btn-toolbar .btn,
 .btn-toolbar .btn-group,
 .btn-toolbar .input-group {
-  float: left;
+  float: middle;
 }
 .btn-toolbar > .btn,
 .btn-toolbar > .btn-group,
@@ -3814,7 +3818,7 @@ tbody.collapse.in {
   pointer-events: none;
 }
 .input-group {
-  position: relative;
+  position: center;
   display: table;
   border-collapse: separate;
 }
@@ -3824,9 +3828,8 @@ tbody.collapse.in {
   padding-left: 0;
 }
 .input-group .form-control {
-  position: relative;
+  position: center;
   z-index: 2;
-  float: left;
   width: 100%;
   margin-bottom: 0;
 }
